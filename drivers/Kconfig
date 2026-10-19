@@ -19,6 +19,8 @@ config PC104
 
 source "drivers/base/Kconfig"
 
+source "drivers/forge/Kconfig"
+
 source "drivers/bus/Kconfig"
 
 source "drivers/cache/Kconfig"

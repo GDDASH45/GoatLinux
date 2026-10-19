@@ -1,0 +1,1 @@
+obj-$(CONFIG_FORGE_RAMFILE) += forge_ramfile.o

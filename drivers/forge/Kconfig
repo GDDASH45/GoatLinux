@@ -1,0 +1,10 @@
+menu "ForgeOS"
+
+config FORGE_RAMFILE
+    tristate "ForgeOS RAM file device"
+    depends on MMU
+    help
+      Provides /dev/forge_ramfile, a RAM-backed character device
+      for temporary storage and ForgeOS development.
+
+endmenu
