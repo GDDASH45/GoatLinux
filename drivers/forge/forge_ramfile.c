@@ -1,12 +1,12 @@
 
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
- * ForgeOS RAM File Driver
+ * Goat Linux RAM File Driver
  *
  * Provides a RAM-backed character device for ForgeOS.
- * Default device: /dev/forge_ramfile
+ * Default device: /dev/goat_ramfile
  *
- * The /dev/forge/ramfile alias can be created by udev.
+ * The /dev/goat/ramfile alias can be created by udev.
  */
 
 #include <linux/module.h>
@@ -20,8 +20,8 @@
 #include <linux/mutex.h>
 #include <linux/version.h>
 
-#define FORGE_RAMFILE_NAME "forge_ramfile"
-#define FORGE_RAMFILE_CLASS "forge_ramfile"
+#define FORGE_RAMFILE_NAME "goat_ramfile"
+#define FORGE_RAMFILE_CLASS "goat_ramfile"
 
 #define FORGE_RAMFILE_DEFAULT_SIZE (16UL * 1024UL * 1024UL)
 #define FORGE_RAMFILE_MAX_SIZE (256UL * 1024UL * 1024UL)
@@ -141,7 +141,7 @@ static int __init forge_ramfile_init(void)
     int ret;
 
     if (size == 0 || size > FORGE_RAMFILE_MAX_SIZE) {
-        pr_err("forge_ramfile: invalid size: %lu bytes\n", size);
+        pr_err("goat_ramfile: invalid size: %lu bytes\n", size);
         return -EINVAL;
     }
 
@@ -180,7 +180,7 @@ static int __init forge_ramfile_init(void)
         goto err_class;
     }
 
-    pr_info("forge_ramfile: registered with %lu bytes of RAM\n",
+    pr_info("goat_ramfile: registered with %lu bytes of RAM\n",
             size);
     return 0;
 
@@ -203,13 +203,13 @@ static void __exit forge_ramfile_exit(void)
     unregister_chrdev_region(forge_dev, 1);
     vfree(ram_data);
 
-    pr_info("forge_ramfile: unloaded\n");
+    pr_info("goat_ramfile: unloaded\n");
 }
 
 module_init(forge_ramfile_init);
 module_exit(forge_ramfile_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("ForgeOS Project");
-MODULE_DESCRIPTION("ForgeOS RAM-backed file device");
+MODULE_AUTHOR("Goat Linux Project");
+MODULE_DESCRIPTION("Goat Linux RAM-backed file device");
 MODULE_VERSION("1.0");
